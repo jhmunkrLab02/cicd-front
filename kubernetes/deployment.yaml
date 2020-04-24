@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend-lab10
-          image: jhmunkribmcom/frontend-lab10
+          image: jhmunkribmcom/front-service
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
