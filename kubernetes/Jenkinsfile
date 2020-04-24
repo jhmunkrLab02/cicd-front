@@ -1,6 +1,11 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
+def notifySlack(STATUS, COLOR) {
+	slackSend channel: '#jenkins-alarm-test ', message: STATUS+" : " + "${env.JOB_NAME}[${env.BUILD_NUMBER}] (${env.BUILD_URL})", color: COLOR, tokenCredentialId: 'W0BKHOgDisdbfgUthGAC31GI', teamDomain: 'then-test'
+}
+
 // Slack 알림
+notifySlack("STARTED", "#0000FF")
 
 podTemplate(label: label, containers: [
 // #0 필요한 Pod생성
@@ -81,11 +86,13 @@ alwaysPullImage: true, privileged: true), containerTemplate(name: 'kubectl', ima
 		}
 
 		// Slack - 빌드 성공시
+		notifySlack("SUCCESS", "#00FF00")
 
 
 	} catch(e) {
 		// Slack - 빌드 실패시
-
+		notifySlack("FAILED", "#FF0000")
+		
 	}
   }
 }
