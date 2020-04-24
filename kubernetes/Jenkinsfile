@@ -76,7 +76,7 @@ alwaysPullImage: true, privileged: true), containerTemplate(name: 'kubectl', ima
 			container('kubectl') {
 				sh "kubectl apply -n ${namespace} -f ${deployment}"
 				sh "kubectl apply -n ${namespace} -f ${service}"
-				sh "kubectl get svc -n default"
+				sh "kubectl get svc -n lab10"
 			}
 		}
 
