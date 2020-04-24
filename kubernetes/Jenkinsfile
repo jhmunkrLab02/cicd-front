@@ -55,7 +55,7 @@ alwaysPullImage: true, privileged: true), containerTemplate(name: 'kubectl', ima
 				sh "sonar-scanner \
 					-Dsonar.projectName=${sonarQubeProject} \
 					-Dsonar.host.url=${sonarQubeURL} \
-					-Dsonar.projectBaseDir=./”
+					-Dsonar.projectBaseDir=./"
 			}
 		}
 		
